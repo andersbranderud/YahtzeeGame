@@ -33,12 +33,25 @@ public class ScoreCalculatorHelperTests
     [Theory]
     [InlineData(3, 2, 3, 4, 5, 6, 0)]
     [InlineData(3, 3, 3, 4, 3, 6, 19)]
+    [InlineData(4, 4, 4, 4, 2, 4, 18)]
     public void SumOfDigitOfAKind_VariousScenarios_VerifyScore(int digitOfAKind, int valueDice1, int valueDice2, int valueDice3, int valueDice4, int valueDice5, int expectedScore)
     {
         var diceList = new List<int> { valueDice1, valueDice2, valueDice3, valueDice4, valueDice5 };
         var dice = new Dice();
         dice.AllDice = diceList;
         var score = ScoreCalculatorHelper.SumOfDigitOfAKind(digitOfAKind, dice.AllDice);
+        score.Should().Be(expectedScore);
+    }
+
+    [Theory]
+    [InlineData(2, 2, 4, 4, 4, 16)]
+    
+    public void FullHouse_VariousScenarios_VerifyScore(int valueDice1, int valueDice2, int valueDice3, int valueDice4, int valueDice5, int expectedScore)
+    {
+        var diceList = new List<int> { valueDice1, valueDice2, valueDice3, valueDice4, valueDice5 };
+        var dice = new Dice();
+        dice.AllDice = diceList;
+        var score = ScoreCalculatorHelper.FullHouse(dice.AllDice);
         score.Should().Be(expectedScore);
     }
 }
