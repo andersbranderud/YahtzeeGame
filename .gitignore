@@ -1,3 +1,4 @@
-"bin" 
-"dll" 
-obj
+bin/
+dll/
+obj/
+
