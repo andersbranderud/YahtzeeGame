@@ -54,4 +54,47 @@ public class ScoreCalculatorHelperTests
         var score = ScoreCalculatorHelper.FullHouse(dice.AllDice);
         score.Should().Be(expectedScore);
     }
+
+    [Theory]
+    [InlineData(2, 2, 5, 4, 4, 17)]
+    public void Chance_VariousScenarios_VerifyScore(int valueDice1, int valueDice2, int valueDice3, int valueDice4, int valueDice5, int expectedScore)
+    {
+        var diceList = new List<int> { valueDice1, valueDice2, valueDice3, valueDice4, valueDice5 };
+        var dice = new Dice();
+        dice.AllDice = diceList;
+        var score = ScoreCalculatorHelper.Chance(dice.AllDice);
+        score.Should().Be(expectedScore);
+    }
+
+    [Theory]
+    [InlineData(1, 2, 3, 4, 5, 15)]
+    [InlineData(2, 3, 4, 5, 6, 20)]
+    [InlineData(3, 3, 4, 5, 6, 21)]
+    [InlineData(3, 3, 3, 5, 6, 0)]
+    public void Straight_VariousScenarios_VerifyScore(int valueDice1, int valueDice2, int valueDice3, int valueDice4, int valueDice5, int expectedScore)
+    {
+        var diceList = new List<int> { valueDice1, valueDice2, valueDice3, valueDice4, valueDice5 };
+        var dice = new Dice
+        {
+            AllDice = diceList
+        };
+        var score = ScoreCalculatorHelper.Straight(dice.AllDice);
+        score.Should().Be(expectedScore);
+    }
+
+    [Theory]
+    [InlineData(2, 2, 2, 2, 2, 50)]
+    [InlineData(3, 3, 3, 3, 3, 50)]
+    [InlineData(3, 3, 4, 5, 6, 0)]
+    [InlineData(3, 3, 3, 5, 6, 0)]
+    public void Yahtzee_VariousScenarios_VerifyScore(int valueDice1, int valueDice2, int valueDice3, int valueDice4, int valueDice5, int expectedScore)
+    {
+        var diceList = new List<int> { valueDice1, valueDice2, valueDice3, valueDice4, valueDice5 };
+        var dice = new Dice
+        {
+            AllDice = diceList
+        };
+        var score = ScoreCalculatorHelper.Yahtzee(dice.AllDice);
+        score.Should().Be(expectedScore);
+    }
 }
