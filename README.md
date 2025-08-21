@@ -1,3 +1,3 @@
 # YahtzeeGame
 
-To see code, click on 'Branches'.
+To see code, see https://github.com/andersbranderud/YahtzeeGame/tree/master
